@@ -7,12 +7,17 @@ def input_students
   name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
-    @students << {name: name, cohort: :november}
+    # method to add the student hash to the array
+    add_students(name, "november")
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
   end
+end
+
+# added method to avoid DRY in load_students() and input_students()
+def add_students(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
 end
 
 def interactive_menu
@@ -53,7 +58,8 @@ def load_students(filename = "students.csv")
   file.readlines.each do |line|
   # parallel assignment
   name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    # method to add the student hash to the array
+    add_students(name, cohort)
   end
   file.close
 end
