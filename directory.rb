@@ -17,16 +17,32 @@ def input_students
   students
 end
 
+def input_hobbies(students)
+  students.each do |student|
+    puts "#{student[:name]} please enter your hobbies separated by commas"
+    hobbies = gets.chomp
+    student[:hobbies] = hobbies
+  end
+  students
+end
+
+def input_country(students)
+  students.each do |student|
+    puts "#{student[:name]} please enter your country of birth"
+    country = gets.chomp
+    student[:country] = country
+  end
+  students
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
 
 def print(students)
-  i = 0
-  while i < students.size
-    puts "#{students[i][:name]} (#{students[i][:cohort]} cohort)"
-    i += 1
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort), country of birth: #{student[:country]}, hobbies: #{student[:hobbies]}"
   end
 end
 
@@ -35,6 +51,8 @@ def print_footer(students)
 end
 
 students = input_students
+input_hobbies(students)
+input_country(students)
 # nothing happens until we call the methods
 print_header
 print(students)
