@@ -20,6 +20,12 @@ def add_students(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
 end
 
+# asking for the filename if 3. or 4. entered
+def input_filename
+  puts "Please enter file name"
+  filename = gets.chomp
+end
+
 def interactive_menu
   loop do
     print_menu
@@ -42,8 +48,9 @@ def show_students
 end
 
 def save_students
+  filename = input_filename
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -54,7 +61,8 @@ def save_students
   puts "Save the list has been completed"
 end
 
-def load_students(filename = "students.csv")
+def load_students
+  filename = input_filename
   file = File.open(filename, "r")
   file.readlines.each do |line|
   # parallel assignment
@@ -68,13 +76,10 @@ end
 
 def try_load_students
   filename = ARGV.first# first argument from the command line
-#  return if filename.nil? # get out of the method if it isn't given
-  if filename.nil?
-    load_students
-    puts "Loaded #{@students.count} from DEFAULT file students.csv"
-  elsif File.exists?(filename) # if it exists
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if it exists
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
+     puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
     puts "Sorry, #{filename} doesn't exist."
     exit # quit the program
