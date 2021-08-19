@@ -4,17 +4,22 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.chomp.capitalize
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
     students << {name: name, cohort: :november}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+    name = gets.chomp.capitalize
   end
   # return the array of students
   students
+end
+
+def input_letter
+  puts "We can print students whose name begins with a specific letter, please enter the letter"
+  letter = gets.chomp.capitalize
 end
 
 def print_header
@@ -22,9 +27,10 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1} #{student[:name]} (#{student[:cohort]} cohort)"
+def print(students, letter)
+  puts "whose name begins with specific letter, #{letter.capitalize}:"
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].start_with?(letter)
   end
 end
 
@@ -33,7 +39,8 @@ def print_footer(students)
 end
 
 students = input_students
+letter = input_letter
 # nothing happens until we call the methods
 print_header
-print(students)
+print(students, letter)
 print_footer(students)
