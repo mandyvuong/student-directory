@@ -6,7 +6,7 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp.capitalize
+  name = gets.strip.capitalize
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
@@ -18,7 +18,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
-    name = gets.chomp.capitalize
+    name = gets.strip.capitalize
   end
   # return the array of students
   students
@@ -27,7 +27,7 @@ end
 def input_hobbies(students)
   students.each do |student|
     puts "#{student[:name]} please enter your hobbies separated by commas"
-    hobbies = gets.chomp
+    hobbies = gets.strip
     student[:hobbies] = hobbies
   end
   students
@@ -36,7 +36,7 @@ end
 def input_country(students)
   students.each do |student|
     puts "#{student[:name]} please enter your country of birth"
-    country = gets.chomp
+    country = gets.strip
     student[:country] = country
   end
   students
