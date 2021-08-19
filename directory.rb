@@ -35,7 +35,6 @@ end
 students = input_students
 #nothing happens until we call the methods
 if students.count > 0
-  puts "NO STUDENTS"
   print_header
   print(students)
   print_footer(students)
