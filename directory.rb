@@ -11,7 +11,12 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    # singular and plural form of students
+    if students.size == 1
+      puts "Now we have #{students.count} student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     name = gets.chomp.capitalize
   end
@@ -49,7 +54,12 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(@width)
+  # singular and plural form of students
+  if students.count == 1
+    puts "Overall, we have #{students.count} great student".center(@width)
+  else
+    puts "Overall, we have #{students.count} great students".center(@width)
+  end
 end
 
 students = input_students
