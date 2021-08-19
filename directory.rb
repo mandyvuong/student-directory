@@ -18,7 +18,7 @@ def input_students
 end
 
 def print_header
-  puts "The students of my cohort at Makers Academy"
+  puts "The students of Villains Academy"
   puts "-------------"
 end
 
@@ -32,8 +32,11 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
-
 students = input_students
-print_header
-print(students)
-print_footer(students)
+#nothing happens until we call the methods
+if students.count > 0
+  puts "NO STUDENTS"
+  print_header
+  print(students)
+  print_footer(students)
+end
