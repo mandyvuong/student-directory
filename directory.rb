@@ -1,3 +1,5 @@
+@width = 50
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -36,23 +38,21 @@ def input_country(students)
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(@width)
+  puts "-------------".center(@width)
 end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort), country of birth: #{student[:country]}, hobbies: #{student[:hobbies]}"
+    puts "#{student[:name]} (#{student[:cohort]} cohort)".center(@width)
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(@width)
 end
 
 students = input_students
-input_hobbies(students)
-input_country(students)
 # nothing happens until we call the methods
 print_header
 print(students)
