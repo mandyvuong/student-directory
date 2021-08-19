@@ -47,6 +47,31 @@ def input_cohort(students)
   students
 end
 
+def sort_by_cohort(students)
+  sorted_cohort = {}
+  
+  students.each do |student|
+    if sorted_cohort[student[:cohort]] == nil
+      sorted_cohort[student[:cohort]] = []
+    end
+    sorted_cohort[student[:cohort]].push(student[:name])
+  end
+
+  # print students grouped by cohorts
+  puts "Here is a list of students by cohort:"
+  sorted_cohort.each do |k, v|
+    puts "-- #{k} cohort --"
+    puts v
+    puts
+  end
+
+  # only print the students from that cohort
+  puts "Enter the cohort month where you would like to see the list of names for, i.e. January"
+  cohort = gets.chomp.capitalize.to_sym
+  puts sorted_cohort[cohort]
+  puts
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
@@ -54,7 +79,7 @@ end
 
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{student[:name]} if (#{student[:cohort]} cohort)"
   end
 end
 
@@ -64,6 +89,7 @@ end
 
 students = input_students
 input_cohort(students)
+sort_by_cohort(students)
 #nothing happens until we call the methods
 if students.count > 0
   print_header
