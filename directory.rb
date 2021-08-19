@@ -51,6 +51,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Save the list has been completed"
 end
 
 def load_students(filename = "students.csv")
@@ -62,6 +63,7 @@ def load_students(filename = "students.csv")
     add_students(name, cohort)
   end
   file.close
+  puts "Load the list has been completed"
 end
 
 def try_load_students
