@@ -17,20 +17,14 @@ def input_students
   students
 end
 
-def input_letter
-  puts "We can print students whose name begins with a specific letter, please enter the letter"
-  letter = gets.chomp.capitalize
-end
-
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
 
-def print(students, letter)
-  puts "whose name begins with specific letter, #{letter.capitalize}:"
+def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].start_with?(letter)
+    puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
   end
 end
 
@@ -39,8 +33,7 @@ def print_footer(students)
 end
 
 students = input_students
-letter = input_letter
 # nothing happens until we call the methods
 print_header
-print(students, letter)
+print(students)
 print_footer(students)
