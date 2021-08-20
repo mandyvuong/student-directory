@@ -105,5 +105,10 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-try_load_students
-interactive_menu
+# Reads its own source code and prints it on the screen.
+# https://ruby-doc.org/core-2.0.0/doc/globals_rdoc.html
+def read_own_source_code
+  $><<IO.read($0)
+end
+
+read_own_source_code
