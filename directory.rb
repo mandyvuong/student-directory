@@ -34,11 +34,6 @@ def print_menu
   processes.each do |key, value|
     puts "#{key}. #{value[0]}" # prints the number followed by method
   end
-  # puts "1. Input the students"
-  # puts "2. Show the students"
-  # puts "3. Save the list to students.csv"
-  # puts "4. Load the list from students.csv"
-  # puts "9. Exit" # 9 because we'll be adding more items
 end
 
 def show_students
