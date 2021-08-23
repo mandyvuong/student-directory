@@ -14,6 +14,7 @@ def input_students
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
+    # exit if name.nil?
   end
 end
 
@@ -30,11 +31,14 @@ def interactive_menu
 end
 
 def print_menu
-  puts "1. Input the students"
-  puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
-  puts "9. Exit" # 9 because we'll be adding more items
+  processes.each do |key, value|
+    puts "#{key}. #{value[0]}" # prints the number followed by method
+  end
+  # puts "1. Input the students"
+  # puts "2. Show the students"
+  # puts "3. Save the list to students.csv"
+  # puts "4. Load the list from students.csv"
+  # puts "9. Exit" # 9 because we'll be adding more items
 end
 
 def show_students
@@ -73,24 +77,26 @@ def try_load_students
   end
 end
 
+def processes
+  {
+    "1" => ["Input the students", method(:input_students)],
+    "2" => ["Show the students", method(:show_students)],
+    "3" => ["Save the list to students.csv", method(:save_students)],
+    "4" => ["Load the list from students.csv", method(:load_students)],
+    "9" => ["Exit", method("exit")]
+  }
+end
+
 def process(selection)
-  case selection
-  when "1"
-    input_students
-  when "2"
-    show_students
-  when "3"
-    save_students
-  when "4"
-    load_students
-  when "9"
-    exit # this will cause the program to terminate
+  if (processes.key?(selection))
+    processes[selection][1].call
   else
     puts "I don't know what you meant, try again"
   end
 end
 
-def print_header
+def print_header9
+
   puts "The students of Villains Academy"
   puts "-------------"
 end
@@ -105,10 +111,5 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-# Reads its own source code and prints it on the screen.
-# https://ruby-doc.org/core-2.0.0/doc/globals_rdoc.html
-def read_own_source_code
-  $><<IO.read($0)
-end
-
-read_own_source_code
+try_load_students
+interactive_menu
